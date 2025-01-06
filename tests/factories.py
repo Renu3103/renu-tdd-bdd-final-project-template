@@ -32,3 +32,14 @@ class ProductFactory(factory.Factory):
 
     id = factory.Sequence(lambda n: n)
    ## Add code to create Fake Products 
+
+class AccountFactory(factory.Factory):
+        """ Creates fake Accounts """
+        class Meta:
+            model = Account
+        id = factory.Sequence(lambda n: n)
+        name = factory.Faker("first_name")
+        age = factory.Faker("age")
+        phone_number = factory.Faker("phone_number")
+        disabled = FuzzyChoice(choices=[True, False])
+        
