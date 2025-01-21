@@ -123,10 +123,16 @@ def update(self, product_id, new_data):
 def list_all(self):
         """List all products."""
         return self.products
-#list_by_name
+#find_by_name
 def find_by_name(self, name):
         """Find products by name and category."""
         return [product for product in self.products if product.name == name];
+
+#find_by_category
+def find_by_name(self, category):
+        """Find products by category."""
+        return [product for product in self.products if product.category == category];
+   
     
        
 
