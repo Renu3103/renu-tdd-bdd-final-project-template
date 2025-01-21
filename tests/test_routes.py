@@ -109,7 +109,13 @@ class TestProductRoutes(TestCase):
         self.assertEqual(data['message'], 'OK')
 
     # ----------------------------------------------------------
-    # TEST CREATE
+def test_read(self):
+        """It should be healthy"""
+        response = self.client.read("/health")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.get_json()
+        self.assertEqual(data['message'], 'OK')
+
     # ----------------------------------------------------------
     def test_create_product(self):
         """It should Create a new Product"""
@@ -164,7 +170,7 @@ class TestProductRoutes(TestCase):
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
     #
-    # ADD YOUR TEST CASES HERE
+    
     #
 
     ######################################################################
