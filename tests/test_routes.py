@@ -181,6 +181,9 @@ def test_read(self):
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
     #
 
+ def test_delete_product_wrong_content_type(self):
+     response = self.client.pop(BASE_URL, data={}, content_type="plain/text")
+      self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
     ######################################################################
     # Utility functions
     ######################################################################
