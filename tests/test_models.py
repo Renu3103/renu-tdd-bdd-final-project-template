@@ -132,6 +132,12 @@ def find_by_name(self, name):
 def find_by_name(self, category):
         """Find products by category."""
         return [product for product in self.products if product.category == category];
+
+#Find by availablity 
+def find_by_availablity(self, avaialable=True):
+        """Find products by avaialability."""
+        return [product for product in self.products if product.available == available];
+
    
     
        
