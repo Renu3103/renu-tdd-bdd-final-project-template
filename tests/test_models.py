@@ -101,16 +101,14 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(new_product.available, product.available)
         self.assertEqual(new_product.category, product.category)
 
-    #
-      def test_delete_a_product(self_demo):  
-    """It should delete a product from the database"""  
-    product = ProductdemoFactory()  
-    product.create()  
-    self.assertIsNotNone(product.id)  
-    products = Product.all()  
-    self.assertEqual(len(products), 1)  
-
-    # Delete the product
+def update(self, product_id, new_data):
+        """Update a product's details."""
+        for product in self.products:
+            if product.id == product_id:
+                product.update(new_data)
+                return product
+        return None
+        # Delete the product
     product.delete()  
     products = Product.all()  
     self.assertEqual(len(products), 0)  
