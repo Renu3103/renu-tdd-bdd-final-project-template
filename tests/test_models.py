@@ -108,10 +108,14 @@ def update(self, product_id, new_data):
                 product.update(new_data)
                 return product
         return None
-        # Delete the product
+
+# Delete the product
     product.delete()  
     products = Product.all()  
     self.assertEqual(len(products), 0)  
      #
-     #
-    #
+def list_all(self):
+        """List all products."""
+        return self.products
+  
+    
