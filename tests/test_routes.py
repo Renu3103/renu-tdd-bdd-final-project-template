@@ -137,7 +137,13 @@ def test_read(self):
         self.assertEqual(new_product["category"], test_product.category.name)
 
         #
-        # Uncomment this code once READ is implemented
+        new_product = read.get_json()
+        self.assertEqual(new_product["name"], test_product.name)
+        self.assertEqual(new_product["description"], test_product.description)
+        self.assertEqual(Decimal(new_product["price"]), test_product.price)
+        self.assertEqual(new_product["available"], test_product.available)
+        self.assertEqual(new_product["category"], test_product.category.name)
+
         #
 
         # # Check that the location header was correct
@@ -170,7 +176,9 @@ def test_read(self):
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
     #
-    
+        def test_update_product_wrong_content_type(self):
+       response = self.client.post(BASE_URL, data={}, content_type="plain/text")
+        self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
     #
 
     ######################################################################
