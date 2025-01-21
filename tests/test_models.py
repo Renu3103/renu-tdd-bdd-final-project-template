@@ -108,6 +108,12 @@ def update(self, product_id, new_data):
                 product.update(new_data)
                 return product
         return None
+    """It should delete a product from the database"""  
+    product = ProductdemoFactory()  
+    product.create()  
+    self.assertIsNotNone(product.id)  
+    products = Product.all()  
+    self.assertEqual(len(products), 1)
 
 # Delete the product
     product.delete()  
@@ -117,5 +123,12 @@ def update(self, product_id, new_data):
 def list_all(self):
         """List all products."""
         return self.products
+#list_by_name
+def find_by_name(self, name):
+        """Find products by name and category."""
+        return [product for product in self.products if product.name == name];
+    
+       
+
   
     
