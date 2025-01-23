@@ -33,13 +33,19 @@ class ProductFactory(factory.Factory):
     id = factory.Sequence(lambda n: n)
    ## Add code to create Fake Products 
 
-class AccountFactory(factory.Factory):
-        """ Creates fake Accounts """
-        class Meta:
-            model = Account
-        id = factory.Sequence(lambda n: n)
-        name = factory.Faker("first_name")
-        age = factory.Faker("age")
-        phone_number = factory.Faker("phone_number")
-        disabled = FuzzyChoice(choices=[True, False])
-        
+   def test_update_a_product(self):
+        """It Update a Product"""
+        product = ProductFactory()
+        product.id = None
+        product.create()
+        self.assertIsNotNone(product.id)
+        product.description = "testing_update"
+        original_id = product.id
+        product.update()
+        self.assertEqual(product.id, original_id)
+        self.assertEqual(product.description, "testing_update")
+        products = Product.all()
+        self.assertEqual(len(products), 1)
+        self.assertEqual(products[0].id, original_id)
+        self.assertEqual(products[0].description, "testing_update")
+
