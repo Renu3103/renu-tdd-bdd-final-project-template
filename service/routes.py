@@ -68,28 +68,28 @@ def check_content_type(content_type):
 ######################################################################
 # C R E A T E   A   N E W   P R O D U C T
 ######################################################################
-@app.route("/products", methods=["POST"])
-def create_products():
+@app.route("/studentInfo", methods=["POST"])
+def create_studentsInfo():
     """
-    Creates a Product
+    Creates a studentInfo
     This endpoint will create a Product based the data in the body that is posted
     """
-    app.logger.info("Request to Create a Product...")
+    app.logger.info("Request to Create a studentInfo...")
     check_content_type("application/json")
 
     data = request.get_json()
     app.logger.info("Processing: %s", data)
-    product = Product()
-    product.deserialize(data)
-    product.create()
-    app.logger.info("Product with new id [%s] saved!", product.id)
+    studentInfo = studentInfo()
+    studentInfo.deserialize(data)
+    studentInfo.create()
+    app.logger.info("Product with new id [%s] saved!", studentInfo.id)
 
-    message = product.serialize()
+    message = studentInfo.serialize()
 
     #
-    # Uncomment this line of code once you implement READ A PRODUCT
+    # Uncomment this line of code once you implement READ A studentInfo
     #
-    # location_url = url_for("get_products", product_id=product.id, _external=True)
+    # location_url = url_for("get_studentsInfo", studentInfo_id=product.id, _external=True)
     location_url = "/"  # delete once READ is implemented
     return jsonify(message), status.HTTP_201_CREATED, {"Location": location_url}
 
@@ -99,7 +99,15 @@ def create_products():
 ######################################################################
 
 #
-# PLACE YOUR CODE TO LIST ALL PRODUCTS HERE
+#     def test_get_studentinfo(self):
+        """It should Get a single studentinfo"""
+        # get the id of a studentinfo
+        test_studentinfo = self._create_studentsinfo(1)[0]
+        response = self.client.get(f"{BASE_URL}/{test_studentinfo.id}")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.get_json()
+        self.assertEqual(data["name"], test_studentinfo.name)
+
 #
 
 ######################################################################
