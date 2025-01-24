@@ -91,5 +91,25 @@ class TestProductModel(unittest.TestCase):
        found_studentInfo=studentInfo.find(product.id)
         self.assertEqual(found_studentInfo.id, studentInfo.id)
         self.assertEqual(found_studentInfo.name, studentInfo.name)
+
+def test_update_a_studentInfoUpdate(self):
+        """It should Update a Product"""
+        studentInfoUpdate = studentInfoFactory()
+        studentInfo.id = None
+        studentInfo.create()
+        self.assertIsNotNone( studentInfo.id)
+        # Change it an save it
+        studentInfo.name = "testing"
+        original_id =studentInfo.id
+        studentInfo.update()
+        self.assertEqual(studentInfo.id, original_id)
+        self.assertEqual(studentInfo.name, "testing")
+        # Fetch it back and make sure the id hasn't changed
+        # but the data did change
+        studentInfo = studentInfo.all()
+        self.assertEqual(len(studentsInfo), 1)
+        self.assertEqual(studentsInfo[0].id, original_id)
+        self.assertEqual(studentsInfo[0].name, "testing")
+
  
        
