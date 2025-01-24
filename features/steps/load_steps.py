@@ -44,9 +44,17 @@ def step_impl(context):
         assert(context.resp.status_code == HTTP_204_NO_CONTENT)
 
     #
-    # load the database with new products
+    # load the database with new studentinfo
     #
     for row in context.table:
         #
-        # ADD YOUR CODE HERE TO CREATE PRODUCTS VIA THE REST API
+        for row in context.table:
+        payload = {
+            "id": row['id'],
+            "name": row['name'],
+            
+        }
+        context.resp = requests.post(rest_endpoint, json=payload)
+        assert context.resp.status_code == HTTP_201_CREATED
+
         #
