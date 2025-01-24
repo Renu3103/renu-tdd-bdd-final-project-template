@@ -33,19 +33,36 @@ class ProductFactory(factory.Factory):
     id = factory.Sequence(lambda n: n)
    ## Add code to create Fake Products 
 
-   def test_update_a_product(self):
+import studentInfo
+from studentInfo.fuzzy import FuzzyChoice, FuzzyDecimal
+from service.models import studentInfo,Courses
+
+
+class studentInfo(studentInfo.Factory):
+    """Creates fake products for testing"""
+
+    class Meta:
+        """Maps factory to data model"""
+
+        model =studentInfo
+
+    id = factory.Sequence(lambda n: n)
+   ## Add code to create Fake studentInfo
+
+   def test_update_a_studentInfo(self):
         """It Update a Product"""
-        product = ProductFactory()
-        product.id = None
-        product.create()
+        studentInfo = studentInfoFactory()
+        studentInfo.id = None
+        studentInfo.create()
         self.assertIsNotNone(product.id)
-        product.description = "testing_update"
-        original_id = product.id
-        product.update()
-        self.assertEqual(product.id, original_id)
-        self.assertEqual(product.description, "testing_update")
-        products = Product.all()
-        self.assertEqual(len(products), 1)
+        studentInfo.name = "testing_update"
+        original_id = studentInfo.id
+        studentInfo.update()
+        self.assertEqual(studentInfo.id, original_id)
+        self.assertEqual(studentInfo.name, "testing_update")
+       studentsInfo= studentInfo.all()
+        self.assertEqual(len( studentsInfo), 1)
         self.assertEqual(products[0].id, original_id)
-        self.assertEqual(products[0].description, "testing_update")
+        self.assertEqual(products[0].name, "testing_update")
+       
 
