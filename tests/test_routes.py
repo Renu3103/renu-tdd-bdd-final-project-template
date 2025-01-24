@@ -204,5 +204,18 @@ def test_read(self):
         self.assertEqual(len( studentIfnfo.all()), 1)
        studentIfnfo.delete()
         self.assertEqual(len(studentIfnfo.all()), 0)
+"""StudentsInfolistall   """
+    def test_list_all_StudentsInfo(self):
+        """It should List all Products in the database"""
+        StudentsInfo = StudentInfo.all()
+        self.assertEqual(StudentsInfo, [])
+        # Create 5 Products
+        for _ in range(5):
+            StudentInfo = StudentInfoFactory()
+            StudentInfo.create()
+        # See if we get back 5 products
+        StudentsInfo = Student.all()
+        self.assertEqual(len(StudentsInfo), 5)
+
 
 
