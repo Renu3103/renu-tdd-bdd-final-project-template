@@ -195,3 +195,14 @@ def test_read(self):
         data = response.get_json()
         # logging.debug("data = %s", data)
         return len(data)
+
+"""Delete studentInfo"""
+    def test_delete_a_product(self):
+        """It should Delete a studentIfnfo"""
+        studentIfnfo =  studentIfnfoFactory()
+        studentIfnfo.create()
+        self.assertEqual(len( studentIfnfo.all()), 1)
+       studentIfnfo.delete()
+        self.assertEqual(len(studentIfnfo.all()), 0)
+
+
