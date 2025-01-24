@@ -155,4 +155,18 @@ def create_studentsInfo():
 
 #
 # PLACE YOUR CODE TO DELETE A PRODUCT HERE
+    def test_delete_studentinfo(self):
+        """It should Delete astudentinfo"""
+       studentsinfo = self._create_studentsinfo(5)
+        studentinfo_count = self.get_studentinfo_count()
+        test_studentinfo = studentsinfo[0]
+        response = self.client.delete(f"{BASE_URL}/{test_studentinfo.id}")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(len(response.data), 0)
+        # make sure they are deleted
+        response = self.client.get(f"{BASE_URL}/{test_studentinfo.id}")
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        new_count = self.get_product_count()
+        self.assertEqual(new_count, studentinfo_count - 1)
+
 #
