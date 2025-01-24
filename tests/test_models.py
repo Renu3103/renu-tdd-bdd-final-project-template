@@ -81,66 +81,15 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(product.available, True)
         self.assertEqual(product.price, 12.50)
         self.assertEqual(product.category, Category.CLOTHS)
-
-    def test_add_a_product(self):
-        """It should Create a product and add it to the database"""
-        products = Product.all()
-        self.assertEqual(products, [])
-        product = ProductFactory()
-        product.id = None
-        product.create()
-        # Assert that it was assigned an id and shows up in the database
-        self.assertIsNotNone(product.id)
-        products = Product.all()
-        self.assertEqual(len(products), 1)
-        # Check that it matches the original product
-        new_product = products[0]
-        self.assertEqual(new_product.name, product.name)
-        self.assertEqual(new_product.description, product.description)
-        self.assertEqual(Decimal(new_product.price), product.price)
-        self.assertEqual(new_product.available, product.available)
-        self.assertEqual(new_product.category, product.category)
-
-def update(self, product_id, new_data):
-        """Update a product's details."""
-        for product in self.products:
-            if product.id == product_id:
-                product.update(new_data)
-                return product
-        return None
-    """It should delete a product from the database"""  
-    product = ProductdemoFactory()  
-    product.create()  
-    self.assertIsNotNone(product.id)  
-    products = Product.all()  
-    self.assertEqual(len(products), 1)
-
-# Delete the product
-    product.delete()  
-    products = Product.all()  
-    self.assertEqual(len(products), 0)  
-     #
-def list_all(self):
-        """List all products."""
-        return self.products
-#find_by_name
-def find_by_name(self, name):
-        """Find products by name and category."""
-        return [product for product in self.products if product.name == name];
-
-#find_by_category
-def find_by_name(self, category):
-        """Find products by category."""
-        return [product for product in self.products if product.category == category];
-
-#Find by availablity 
-def find_by_availablity(self, avaialable=True):
-        """Find products by avaialability."""
-        return [product for product in self.products if product.available == available];
-
-   
-    
+"""Students_Info"""
+        def test_read_a_studentInfo(self):
+        """It should Read a studentInfo"""
+       studentsInfo= studentsInfoFactory()
+      studentsInfo.id = None
+       studentsInfo.create()
+        self.assertIsNotNone(studentInfot.id)
+       found_studentInfo=studentInfo.find(product.id)
+        self.assertEqual(found_studentInfo.id, studentInfo.id)
+        self.assertEqual(found_studentInfo.name, studentInfo.name)
+ 
        
-
-  
-    
