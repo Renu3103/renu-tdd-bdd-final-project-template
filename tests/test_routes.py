@@ -216,6 +216,19 @@ def test_read(self):
         # See if we get back 5 products
         StudentsInfo = Student.all()
         self.assertEqual(len(StudentsInfo), 5)
+    """StudentsInfo list by name"""
+      def test_find_by_availability(self):
+        """It should Find Products by Availability"""
+      studentInfo = studentInfoFactory.create_batch(10)
+        for studentInfo in studentsInfo:
+            studentInfo.create()
+        available = studentsInfo[0].available
+        count = len([studentInfo for studentInfo in studentsInfoif studentInfo.available == available])
+        found = studentInfo.find_by_availability(available)
+        self.assertEqual(found.count(), count)
+        for studentInfo in found:
+            self.assertEqual(studentInfo.available, available)
+
 
 
 
