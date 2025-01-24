@@ -229,6 +229,20 @@ def test_read(self):
         for studentInfo in found:
             self.assertEqual(studentInfo.available, available)
 
+"""studentsinfolistbycateogory"""
+      def test_find_by_category(self):
+        """It should Find studentinfo by Category"""
+        studentsinfo = studentinfoFactory.create_batch(10)
+        for studentinfo in studentsinfo:
+            studentinfo.create()
+        category = studentsinfo[0].category
+        count = len([product for studentinfo in studentsinfo if studentinfo.category == category])
+        found = studentinfo.find_by_category(category)
+        self.assertEqual(found.count(), count)
+        for studentinfo in found:
+            self.assertEqual(studentinfo.category, category)
+
+
 
 
 
