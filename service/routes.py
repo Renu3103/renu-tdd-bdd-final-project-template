@@ -115,7 +115,14 @@ def create_studentsInfo():
 ######################################################################
 
 #
-# PLACE YOUR CODE HERE TO READ A PRODUCT
+##     def test_get_studentinfo(self):
+        """It should Get a single studentinfo"""
+        # get the id of a studentinfo
+        test_studentinfo = self._create_studentsinfo(1)[0]
+        response = self.client.get(f"{BASE_URL}/{test_studentinfo.id}")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.get_json()
+        self.assertEqual(data["name"], test_studentinfo.name)
 #
 
 ######################################################################
@@ -124,6 +131,21 @@ def create_studentsInfo():
 
 #
 # PLACE YOUR CODE TO UPDATE A PRODUCT HERE
+    def test_update_studentinfo(self):
+        """It should Update an existing Product"""
+        # create a studentinfo to update
+        test_studentinfo = studentinfoFactory()
+        response = self.client.post(BASE_URL, json=test_studentinfo.serialize())
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # update the studentinfo
+        new_studentinfo = response.get_json()
+        new_studentinfo["name"] = "unknown"
+        response = self.client.put(f"{BASE_URL}/{new_studentinfo['id']}", json=new_studentinfo)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        updated_studentinfo = response.get_json()
+        self.assertEqual(updated_studentinfo["description"], "unknown")
+
 #
 
 ######################################################################
