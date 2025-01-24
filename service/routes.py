@@ -99,14 +99,17 @@ def create_studentsInfo():
 ######################################################################
 
 #
-#     def test_get_studentinfo(self):
-        """It should Get a single studentinfo"""
-        # get the id of a studentinfo
-        test_studentinfo = self._create_studentsinfo(1)[0]
-        response = self.client.get(f"{BASE_URL}/{test_studentinfo.id}")
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        data = response.get_json()
-        self.assertEqual(data["name"], test_studentinfo.name)
+#     @app.route("/studentsinfo", methods=["GET"])
+def list_studentsinfo():
+    """Returns a list of studentsinfo"""
+    app.logger.info("Request to list studentsinfo...")
+# use the studentinfo.all() method to retrieve all products
+    # create a list of serialize() studentsinfo
+    # log the number of products studentsinfo being returned in the list 
+    # return the list with a return code of status.HTTP_200_OK
+
+    return {list of studentsinfo as json here + 200
+
 
 #
 
